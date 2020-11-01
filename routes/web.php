@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PasteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home');
+})->name('home');
+
+Route::get('/', [App\Http\Controllers\PasteController::class, 'index'])->name('home');
+
+Route::post('/',  [App\Http\Controllers\PasteController::class, 'submit'])->name('paste-form');
+
+Route::get('/{hash}',
+    [App\Http\Controllers\PasteController::class, 'showOnePaste'])->name('paste-data-one');
+
+Route::post('/search',[App\Http\Controllers\PasteController::class, 'search'])->name('search');
+
+Auth::routes();
+
+
