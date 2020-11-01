@@ -14,7 +14,7 @@
     <form action="{{ route('paste-form') }}" method="post">
         @csrf
         <div class="form-group">
-            <label for="title">Введите заголовок</label>
+            <label for="title">Заголовок</label>
             <input type="text" placeholder="Введите заголовок" name="title" id="title" class="form-control">
         </div>
 

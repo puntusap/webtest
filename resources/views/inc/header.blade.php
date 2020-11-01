@@ -1,23 +1,21 @@
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-    <h5 class="my-0 mr-md-auto font-weight-normal">Incubator</h5>
+    <h5 class="my-0 mr-md-auto font-weight-normal">WebTest</h5>
     <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="/">Главная</a>
-        <a class="p-2 text-dark" href="">Контакты</a>
         <form action="{{ route('search') }}" method="post" class="form-inline mt-2 mt-md-0">
             @csrf
-            <input id="search" name="search" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <input id="search" name="search" class="form-control mr-sm-2" type="text" placeholder="Искать..." aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
         </form>
     </nav>
     <ul class="navbar-nav ml-auto">
         <!-- Authentication Links -->
         @guest
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                <a class="nav-link" href="{{ route('login') }}">Войти</a>
             </li>
             @if (Route::has('register'))
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    <a class="nav-link" href="{{ route('register') }}">Регистрация</a>
                 </li>
             @endif
         @else

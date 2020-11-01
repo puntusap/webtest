@@ -18,15 +18,18 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+Auth::routes();
+
 Route::get('/', [App\Http\Controllers\PasteController::class, 'index'])->name('home');
 
 Route::post('/',  [App\Http\Controllers\PasteController::class, 'submit'])->name('paste-form');
 
+Route::post('/search',[App\Http\Controllers\PasteController::class, 'search'])->name('search');
+
+Route::get('/mypastes',[App\Http\Controllers\PasteController::class, 'myPastes'])->name('my-pastes');
+
 Route::get('/{hash}',
     [App\Http\Controllers\PasteController::class, 'showOnePaste'])->name('paste-data-one');
 
-Route::post('/search',[App\Http\Controllers\PasteController::class, 'search'])->name('search');
-
-Auth::routes();
 
 
