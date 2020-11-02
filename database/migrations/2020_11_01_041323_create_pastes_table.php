@@ -20,6 +20,7 @@ class CreatePastesTable extends Migration
             $table->dateTime('time');
             $table->foreignId('user_id')->nullable();
             $table->string('access');
+            $table->string('syntax')->nullable();
             $table->string('hash')->nullable();
             $table->timestamps();
         });

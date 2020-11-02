@@ -37,6 +37,16 @@
         </div>
 
         <div class="form-group">
+            <label for="syntax">Синтаксис</label>
+            <select name="syntax">
+                <option value="">Выберите синтаксис</option>
+                <option value="php">php</option>
+                <option value="js">js</option>
+                <option value="html">html</option>
+            </select>
+        </div>
+
+        <div class="form-group">
             <label for="access">Тип доступа</label>
             <select name="access">
                 <option value="public"> Публичный</option>

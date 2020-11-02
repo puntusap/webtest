@@ -14,6 +14,7 @@ class PasteService
         $paste = new Paste();
         $paste->title=$request->input('title');
         $paste->text=$request->input('text');
+        $paste->syntax=$request->input('syntax');
         if (isset(Auth::user()->id)){
         $paste->user_id=$request->user()->id;
         };
@@ -39,8 +40,8 @@ class PasteService
 
     public static function getOnePaste($hash){
         $paste= new Paste();
-        $data=$paste->where('access','public')->where('time','>',date("Y-m-d H:i:s", time()))
-            ->orWhere('time','=','1970-01-01 00:00:00')->get();
+        $data=$paste->where('access','public')->orWhere('time','>',date("Y-m-d H:i:s", time()))
+            ->Where('time','=','1970-01-01 00:00:00')->get();
 
         return $data->where('hash',$hash);
     }
@@ -58,8 +59,8 @@ class PasteService
     public static function getMyTen($id){
         $paste= new Paste();
         $data=$paste->where('user_id','=',$id)
-            ->where('time','>',date("Y-m-d H:i:s", time()))
-            ->orWhere('time','=','1970-01-01 00:00:00')
+            ->orwhere('time','>',date("Y-m-d H:i:s", time()))
+            ->Where('time','=','1970-01-01 00:00:00')
             ->orderBy('id','desc')
             ->take(10)->get();
 
@@ -80,20 +81,23 @@ class PasteService
     public static function getSearch($search){
         $paste= new Paste();
         if (isset(Auth::user()->id)){
-            $data = $paste->where('user_id','=',Auth::user()->id)
-                ->orWhere('access','public')
-                ->orWhere('title', 'like', '%' . $search . '%')
+            $data = $paste->Where('title', 'like', '%' . $search . '%')
                 ->orWhere('text', 'like', '%' . $search . '%')
-                ->Where('time','>',date("Y-m-d H:i:s", time()))
-                ->orWhere('time','=','1970-01-01 00:00:00')->paginate(10);
+                ->orWhere('time','>',date("Y-m-d H:i:s", time()))
+                ->Where('time','=','1970-01-01 00:00:00')
+                ->orWhere('access','public')
+                ->where('user_id','=',Auth::user()->id)
+                ->paginate(10);
+
+            return $data;
         };
-        /*where([
-            ['title', 'like', '%' . $search . '%'],
-            ['text', 'like', '%' . $search . '%'],
-            ['user_id','=', Auth::user()->id],
-            ['time', '>', date("Y-m-d H:i:s", time())],
-            ['time', '=','1970-01-01 00:00:00'],
-        ])->paginate(10);*/
+
+        $data = $paste->Where('title', 'like', '%' . $search . '%')
+            ->Where('access','=','public')
+            ->orWhere('text', 'like', '%' . $search . '%')
+            ->orWhere('time','>',date("Y-m-d H:i:s", time()))
+            ->Where('time','=','1970-01-01 00:00:00')
+            ->paginate(10);
 
         return $data;
     }
