@@ -4,7 +4,7 @@
         <ol class="top">
             @foreach( $mytop as $el)
                 <li>
-                    <a href="\{{$el->hash}}">{{ $el->title }}</a>
+                    <a class="badge badge-primary" href="\{{$el->hash}}">{{ $el->title }}</a>
                 </li>
             @endforeach
         </ol>

@@ -65,4 +65,36 @@ class PasteService
 
         return $data;
     }
+
+    public static function allMyPastes($id){
+        $paste= new Paste();
+        $data=$paste->where('user_id','=',$id)
+            ->where('time','>',date("Y-m-d H:i:s", time()))
+            ->orWhere('time','=','1970-01-01 00:00:00')
+            ->orderBy('id','desc')
+            ->paginate(10);
+
+        return $data;
+    }
+
+    public static function getSearch($search){
+        $paste= new Paste();
+        if (isset(Auth::user()->id)){
+            $data = $paste->where('user_id','=',Auth::user()->id)
+                ->orWhere('access','public')
+                ->orWhere('title', 'like', '%' . $search . '%')
+                ->orWhere('text', 'like', '%' . $search . '%')
+                ->Where('time','>',date("Y-m-d H:i:s", time()))
+                ->orWhere('time','=','1970-01-01 00:00:00')->paginate(10);
+        };
+        /*where([
+            ['title', 'like', '%' . $search . '%'],
+            ['text', 'like', '%' . $search . '%'],
+            ['user_id','=', Auth::user()->id],
+            ['time', '>', date("Y-m-d H:i:s", time())],
+            ['time', '=','1970-01-01 00:00:00'],
+        ])->paginate(10);*/
+
+        return $data;
+    }
 }

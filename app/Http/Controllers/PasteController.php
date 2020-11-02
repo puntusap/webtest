@@ -27,10 +27,22 @@ class PasteController extends Controller
     public function showOnePaste($hash){
         $paste = PasteService::getOnePaste($hash);
         $top = PasteService::getTopTen();
-        return view('one-paste',['paste'=>$paste, 'top'=>$top]);
+        $mytop=[];
+        if (isset(Auth::user()->id)){
+            $mytop=PasteService::getMyTen(Auth::user()->id);
+        }
+        return view('one-paste',['paste'=>$paste, 'top'=>$top,'mytop'=>$mytop]);
     }
 
     public function myPastes(){
+        if (isset(Auth::user()->id)){
+            $data=PasteService::allMyPastes(Auth::user()->id);
+        }
+        return view('mypastes',['allpaste'=>$data]);
+    }
 
+    public function search(Request $request){
+        $data=PasteService::getSearch($request->input('search'));
+        return view('search', ['allpaste'=>$data] );
     }
 }

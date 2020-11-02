@@ -15,12 +15,12 @@
         <tbody>
         @foreach($allpaste as $paste)
             <tr>
-                <td><a href="{{$paste->hash}}">{{ $paste->title }}</a></td>
+                <td><a class="badge badge-primary" href="{{$paste->hash}}">{{ $paste->title }}</a></td>
                 <td>{{ $paste->access }}</td>
             </tr>
         @endforeach
         </tbody>
     </table>
-    {{ $allpaste->links() }}
+    {{ $allpaste->links("pagination::bootstrap-4")}}
 @endsection
 

@@ -48,7 +48,7 @@
             </select>
         </div>
 
-        <button type="submit" class="btn btn-success">Отправить</button>
+        <button type="submit" class="btn btn-primary">Отправить</button>
     </form>
 
 @endsection

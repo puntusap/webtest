@@ -1,10 +1,13 @@
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-    <h5 class="my-0 mr-md-auto font-weight-normal">WebTest</h5>
+    <a  class="my-0 mr-md-auto badge badge-primary" href="/" >
+        <h5 class=" font-weight-normal">WebTest</h5>
+    </a>
+
     <nav class="my-2 my-md-0 mr-md-3">
         <form action="{{ route('search') }}" method="post" class="form-inline mt-2 mt-md-0">
             @csrf
             <input id="search" name="search" class="form-control mr-sm-2" type="text" placeholder="Искать..." aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Поиск</button>
         </form>
     </nav>
     <ul class="navbar-nav ml-auto">

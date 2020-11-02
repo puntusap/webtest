@@ -20,6 +20,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/vk/auth',[App\Http\Controllers\SocialController::class, 'index'])->name('vk-auth');
+
+Route::get('/vk/auth/callback',[App\Http\Controllers\SocialController::class, 'callback']);
+
 Route::get('/', [App\Http\Controllers\PasteController::class, 'index'])->name('home');
 
 Route::post('/',  [App\Http\Controllers\PasteController::class, 'submit'])->name('paste-form');

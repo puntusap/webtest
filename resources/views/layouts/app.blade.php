@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-3">
             @if(isset(Auth::user()->name ))
-                @if (!(Request::is('login') or Request::is('register')))
+                @if (!(Request::is('login') or Request::is('register') or Request::is('search')))
                     @include('inc.mytop')
                 @endif
             @endif
@@ -30,7 +30,7 @@
             @yield('content')
         </div>
         <div class="col-3">
-            @if (!(Request::is('login') or Request::is('register')))
+            @if (!(Request::is('login') or Request::is('register') or Request::is('search')))
                 @include('inc.top')
             @endif
         </div>
