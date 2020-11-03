@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class PasteController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $mytop=[];
-        if (isset(Auth::user()->id)){
+        if (isset(Auth::user()->id))
+        {
             $mytop=PasteService::getMyTen(Auth::user()->id);
         }
         $top = PasteService::getTopTen();
@@ -24,24 +26,29 @@ class PasteController extends Controller
         return redirect()->route('home')->with('success', $data);
     }
 
-    public function showOnePaste($hash){
+    public function showOnePaste($hash)
+    {
         $paste = PasteService::getOnePaste($hash);
         $top = PasteService::getTopTen();
         $mytop=[];
-        if (isset(Auth::user()->id)){
+        if (isset(Auth::user()->id))
+        {
             $mytop=PasteService::getMyTen(Auth::user()->id);
         }
         return view('one-paste',['paste'=>$paste, 'top'=>$top,'mytop'=>$mytop]);
     }
 
-    public function myPastes(){
-        if (isset(Auth::user()->id)){
+    public function myPastes()
+    {
+        if (isset(Auth::user()->id))
+        {
             $data=PasteService::allMyPastes(Auth::user()->id);
         }
         return view('mypastes',['allpaste'=>$data]);
     }
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
         $data=PasteService::getSearch($request->input('search'));
         return view('search', ['allpaste'=>$data] );
     }

@@ -6,7 +6,7 @@
     <nav class="my-2 my-md-0 mr-md-3">
         <form action="{{ route('search') }}" method="post" class="form-inline mt-2 mt-md-0">
             @csrf
-            <input id="search" name="search" class="form-control mr-sm-2" type="text" placeholder="Искать..." aria-label="Search">
+            <input id="search" name="search" class="form-control mr-sm-2" type="text" placeholder="Работаю некорректно..." aria-label="Search">
             <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Поиск</button>
         </form>
     </nav>

@@ -10,14 +10,17 @@ use Illuminate\Contracts\Auth\Authenticatable;
 
 class SocialController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return Socialite::driver('vkontakte')->redirect();
     }
 
-    public function callback(){
+    public function callback()
+    {
         $user=Socialite::driver('vkontakte')->user();
         $objSocial=new SocialService();
-        if ($user=$objSocial->saveSocial($user)){
+        if ($user=$objSocial->saveSocial($user))
+        {
             Auth::login($user);
             return redirect()->route('home');
         }
